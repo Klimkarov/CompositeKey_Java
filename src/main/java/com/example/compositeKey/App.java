@@ -1,0 +1,36 @@
+package com.example.compositeKey;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+/**
+ * Hello world!
+ *
+ */
+public class App {
+    
+    static SessionFactory factory;
+
+	public static void main(String[] args) {
+		
+		Transaction tx = null;
+		
+		try {
+			Configuration cfg = new Configuration();
+			cfg.addAnnotatedClass(com.example.compositeKey.CompositeId.class); 
+			cfg.addAnnotatedClass(com.example.compositeKey.Employee.class);
+			cfg.addAnnotatedClass(com.example.compositeKey.Phone.class);
+			cfg.configure();
+			factory = cfg.configure().buildSessionFactory();
+			Session session = factory.openSession();
+			
+			
+
+		} catch (HibernateException e) {
+			
+}
+	}
+}
